@@ -1,6 +1,6 @@
 CC := g++
 RM := rm -f
-CFLAGS := -Wall -pedantic
+CFLAGS := -Wall -pedantic -std=c++14
 APP := strings_test
 
 OBJS := strings.o

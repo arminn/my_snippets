@@ -1,13 +1,18 @@
-
-
 #include <string.h>
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <string_view>
+
+using std::cout;
+using std::exception;
+using std::stoi;
+using std::string;
+using std::stringstream;
 
 // c++17  #include <charconv>	std::from_chars(s.data(), s.data()+s.size(), val);
 
-bool strtolToInt(const std::string& str, int& i) {
+bool strtolToInt(const string& str, int& i) {
 	char* end = nullptr;
 	int d = strtol(str.c_str(), &end, 10);
 	if (*end) {
@@ -18,15 +23,15 @@ bool strtolToInt(const std::string& str, int& i) {
 }
 
 template <typename T>
-bool fromString(const std::string& str, T t) {
-	std::stringstream ss;
+bool fromString(const string& str, T t) {
+	stringstream ss;
 	ss << str;
 	bool result = ss >> t;
 	return result;
 }
 
-bool sstreamToInt(const std::string& str, int& i) {
-	std::stringstream ss(str);
+bool sstreamToInt(const string& str, int& i) {
+	stringstream ss(str);
 	int x = 0; 
 	ss >> x;
 	if (ss.fail()) {
@@ -36,48 +41,48 @@ bool sstreamToInt(const std::string& str, int& i) {
 	return true;
 }
 
-int stoiToInt(const std::string& str, int& i) {
+int stoiToInt(const string& str, int& i) {
 	try {
-		i = std::stoi(str);
-	} catch (std::exception& e) {
+		i = stoi(str);
+	} catch (exception& e) {
 	    return false;
 	}
 	return true;
 }
 
-void testString(const std::string& s) {
-	std::cout << "Will try " << s << "\n";
+void testString(const string& s) {
+	cout << "Will try " << s << "\n";
 	int val;
     
     if (sstreamToInt(s, val)) {    
-    	std::cout << "Convert to int using std::sstream : " << val << "\n";
+    	cout << "Convert to int using std::sstream : " << val << "\n";
     } else {
-    	std::cout << "Unable to convert " << s << " to int using std::sstream\n";
+    	cout << "Unable to convert " << s << " to int using std::sstream\n";
     }
     
 	
 	if (stoiToInt(s, val)) {
-		std::cout << "Convert to int using std::stoi : " << val << "\n"; 
+		cout << "Convert to int using std::stoi : " << val << "\n";
 	} else {
-	    std::cout << "Unable to convert " << s << " to int using std::stoi\n";
+	    cout << "Unable to convert " << s << " to int using std::stoi\n";
 	}
 	
 	if (strtolToInt(s, val)) {
-		std::cout << "Convert to int using std::strtol : " << val << "\n";
+		cout << "Convert to int using std::strtol : " << val << "\n";
 	} else {
-    	std::cout << "Unable to convert " << s << " to int using std::strtol\n";
+    	cout << "Unable to convert " << s << " to int using std::strtol\n";
     }
 	
 	if (fromString(s, val)) {
-		std::cout << "Convert to int using fromStringl : " << val << "\n";
+		cout << "Convert to int using fromStringl : " << val << "\n";
 	} else {
-	    std::cout << "Unable to convert " << s << " to int using fromString\n";
+	    cout << "Unable to convert " << s << " to int using fromString\n";
 	}
 	
 }
 
 int main(int argc, char* argv[]) {
-    std::string s = {"edede"}, s2 = {"12345"}, s3 = {"2.45"}; 
+    string s = {"bad"}, s2 = {"12345"}, s3 = {"2.45"};
     testString(s);
     testString(s2);
     testString(s3);
