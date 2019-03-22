@@ -1,7 +1,8 @@
 **LD* Varaibles**
 
 Some of LD* variables can be found here:
-[link] (https://android.googlesource.com/platform/bionic/+/refs/heads/master/libc/bionic/libc_init_common.cpp#232)
+
+https://android.googlesource.com/platform/bionic/+/refs/heads/master/libc/bionic/libc_init_common.cpp#232
 
 
 *LD_HELP*
